@@ -1,0 +1,7 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.ui.commons"
+			controllerName="sapui5.xmlView" xmlns:html="http://www.w3.org/1999/xhtml">
+<html:h1>XML-Header</html:h1>			
+<Panel>			
+<Button text="press me" press="press"/>
+</Panel>
+</core:View>

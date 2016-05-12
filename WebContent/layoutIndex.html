@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
+
+		<script src="resources/sap-ui-core.js"
+				id="sap-ui-bootstrap"
+				data-sap-ui-libs="sap.ui.commons"
+				data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		<!-- 库不能随便加，加了会无法显示（奇怪） -->
+		<!-- add sap.ui.table,sap.ui.ux3 and/or other libraries to 'data-sap-ui-libs' if required -->
+
+		<script>
+				sap.ui.localResources("sapui5");
+				
+				var oHeader = new sap.ui.commons.ApplicationHeader("headet");//id 要唯一
+				oHeader.setLogoText("welcome to my home, you r my family");
+				//oHeader.logoSrc = "https://www.baidu.com/";
+			    oHeader.setDisplayWelcome(false);
+				oHeader.setDisplayLogoff(true);
+				//oHeader.setUserName("Vicky");
+				oHeader.placeAt("header");
+				
+				//var oMenu = new sap.ui.commons.MenuBar("menuBar");
+				var oMenuItem1 = new sap.ui.commons.MenuItem("item1",{text:"menu-item1"});
+				var oMenuItem2 = new sap.ui.commons.MenuItem("item2",{text:"menu-item2"});
+				//oMenu.items = {oMenuItem1,oMenuItem2};  //对象的数组属性怎么直接赋值
+				//oMenu.addItem(oMenuItem1);
+				//oMenu.addItem(oMenuItem2);
+				
+				var oMenu = new sap.ui.commons.MenuBar("menuBar",{
+					items:[oMenuItem1,oMenuItem2]
+				});				
+				oMenu.placeAt("menu");
+				
+				var oPanel = new sap.ui.commons.Panel("pan",{text:"Enter Data"});
+				var olabel1 = new sap.ui.commons.Label("label1", {text:"First Name"});
+				
+				var oTextField1 = new sap.ui.commons.TextField("tf1",{value:"{/firstName}"});
+				var oTextField1view = new sap.ui.commons.TextView("tf1View",{text:"{/firstName}"});
+				
+				var olabel2 = new sap.ui.commons.Label("label2",{text:"Last Name"});
+				
+				var oTextField2 = new sap.ui.commons.TextField("tf2",{value:"{/lastName}"});
+				var oTextField2view = new sap.ui.commons.TextView("tf2View",{text:"{/lastName}"});
+				
+				var obtn = new sap.ui.commons.Button("btn",{text:"Submit",press:submit});
+				//vertical layout
+				/*
+				var oLayout = new sap.ui.commons.layout.VerticalLayout("layout1",{
+					content:[olabel1,oTextField1,olabel2,oTextField2]
+				})
+				*/
+				var data = {firstName:"Vicky", lastName:"Chen"};
+				
+				var oModel = new sap.ui.model.json.JSONModel();
+				oModel.setData(data);
+				sap.ui.getCore().setModel(oModel);//global set
+				
+				function submit(){
+					oModel.setData({firstName: sap.ui.getCore().byId("tf1").getValue()},true);					
+					oModel.setData({lastName: sap.ui.getCore().byId("tf2").getValue()},true);
+				};
+				//matrix layout
+				var oLayout = new sap.ui.commons.layout.MatrixLayout("layout1");
+				oLayout.createRow(olabel1);
+				oLayout.createRow(oTextField1,oTextField1view);
+				oLayout.createRow(olabel2);
+				oLayout.createRow(oTextField2,oTextField2view);
+				oLayout.createRow(obtn);
+				oPanel.addContent(oLayout).placeAt("content");
+
+		</script>
+
+	</head>
+	<body class="sapUiBody" role="application">
+		<div id ="header"></div>
+		<div id = "menu"></div>
+		<div id="content"></div>
+	</body>
+</html>

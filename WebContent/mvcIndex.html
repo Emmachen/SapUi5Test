@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
+		
+
+		<script src="resources/sap-ui-core.js"
+				id="sap-ui-bootstrap"
+				data-sap-ui-libs="sap.ui.commons"
+				data-sap-ui-theme="sap_goldreflection">
+		</script>
+		<!-- add sap.ui.table,sap.ui.ux3 and/or other libraries to 'data-sap-ui-libs' if required -->
+
+		<script>
+				sap.ui.localResources("sapui5");
+				
+				var oPanel = new sap.ui.commons.Panel("views",{text:"varied view Options"});
+				
+				//var view = sap.ui.view({id:"idMyView1", viewName:"sapui5.mvcJsView", type:sap.ui.core.mvc.ViewType.JS});			
+				//var viewxml = sap.ui.view({id:"idMyView2", viewName:"sapui5.mvcXmlView", type:sap.ui.core.mvc.ViewType.XML});				
+				//var viewjson = sap.ui.view({id:"idMyView3", viewName:"sapui5.mvcJsonView", type:sap.ui.core.mvc.ViewType.JSON});
+				//var viewjson = sap.ui.view({viewContent:json});
+				
+				var oLayout = new sap.ui.commons.layout.HorizontalLayout("layout",{
+					content:[viewjson]
+				});
+				
+				oPanel.addContent(oLayout).placeAt("content");
+		</script>
+
+	</head>
+	<body class="sapUiBody" role="application">
+		<div id="content"></div>
+	</body>
+</html>
