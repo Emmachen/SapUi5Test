@@ -1,2 +1,1 @@
-# SapUi5Test
-test
+# For our self study
